@@ -1,0 +1,461 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+.ag-theme-alpine {
+    @include ag-theme-alpine();
+}
+
+table {
+    width: 100%;
+}
+
+#admin_portal {
+    float: right;
+}
+
+.inx-submit {
+    margin-top: 30px;
+}
+
+.inx-filter-submit {
+    margin-top: 10px;
+}
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #5f5f5f;
+    color: #fff;
+    transition: all 0.3s;
+    top: 57px;
+    z-index: 9;
+    position: relative;
+}
+
+.container.content-area {
+    margin-top: 80px;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #5f5f5f;
+}
+
+#sidebar ul.components li {
+    border-bottom: 1px solid #bac4c4;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #3a2b2f;
+    background: #fafafa;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #5f5f5f;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+
+/* 
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+} */
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #5f5f5f;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #5f5f5f;
+}
+
+a.article,
+a.article:hover {
+    background: #5f5f5f !important;
+    color: #fff !important;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 0 0 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+.bg-light {
+    background-color: #5f5f5f!important;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    padding: 0;
+    z-index: 9;
+}
+
+.content-area {
+    margin-top: 80px;
+}
+
+ul.nav.navbar-nav.drop-down-menu-inside {
+    border: 1px solid;
+    width: 150px;
+    background: #fff;
+    font-size: 14px;
+    display: inline-flex;
+}
+
+ul.nav.navbar-nav.drop-down-menu-inside.arrows a.nav-link {
+    width: 42px;
+    border: 2px solid;
+    background: #57595b;
+    margin: 0 auto 5px auto;
+    text-align: center;
+    height: auto;
+    border-radius: 5px;
+    padding: 3px;
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+ul.nav.navbar-nav.drop-down-menu-inside.arrows {
+    border: none;
+    background: none;
+}
+
+.multi-select-list {
+    width: 150px;
+    overflow: hidden;
+    display: inline-flex;
+    height: 160px;
+}
+
+option {
+    padding: 5px 0 5px 10px;
+    cursor: pointer;
+}
+
+option:hover {
+    background: #5f5f5f;
+    color: #fff;
+}
+
+select.custom-select {
+    overflow: hidden;
+    margin: 0;
+    padding: 0 !important;
+    border: 1px solid;
+    border-radius: 0;
+}
+
+select.custom-select:focus {
+    outline: none;
+    border-color: none;
+    box-shadow: none;
+}
+
+ul.nav.navbar-nav.drop-down-menu-inside a.nav-link {
+    padding: 10px;
+}
+
+ul.nav.navbar-nav.drop-down-menu-inside a.nav-link:hover {
+    background: #5f5f5f;
+    color: #fff;
+}
+
+.drop-down-menu.diff-fields {
+    margin: 15px;
+}
+
+.default-fileds {
+    color: #3a2b2f;
+    text-decoration: underline;
+}
+
+select.custom-select {
+    border-radius: 5px;
+}
+
+.content-area .col-sm-5,
+.content-area .col-sm-2 {
+    display: inline-flex;
+    width: 40%;
+    padding: 0;
+}
+
+.content-area .col-sm-6 {
+    /* padding-bottom: 31px; */
+    max-width: 48%;
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+.content-area .col-sm-6.one:after {
+    content: "";
+    border-right: 2px solid;
+    height: 70%;
+    padding: 10px;
+    position: absolute;
+}
+
+.dropdown-menu.show {
+    display: block;
+    transform: translate3d(0px, 38px, 0px) !important;
+    top: -2px !important;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #5f5f5f;
+}
+
+.dropdown-menu.show a {
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .15);
+}
+
+.content-area .col-sm-5,
+.content-area .col-sm-4,
+.content-area .col-sm-3 {
+    display: inline-flex;
+    padding: 0;
+    vertical-align: text-top;
+}
+
+button.btn.btn-info.arrowbtn {
+    padding-right: 60px;
+}
+
+svg.svg-inline--fa.fa-calendar.fa-w-14 {
+    width: 30px;
+    height: 40px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.row.warningmsg span {
+    color: red;
+    margin: 20px 0px 0px 20px;
+}
+
+.row.successMsg span {
+    color: green;
+    margin: 20px 0px 0px 20px;
+}
+
+.row.onetime {
+    padding-bottom: 20px;
+}
+
+.choosetime {
+    display: inline-flex;
+    padding-left: 20px;
+    align-items: center;
+}
+
+.container .row .col-sm-12 {
+    padding-bottom: 20px;
+}
+
+label {
+    margin-left: 20px;
+}
+
+#datepicker {
+    width: 180px;
+    margin: 0 20px 0px 20px;
+}
+
+#datepicker>span:hover {
+    cursor: pointer;
+}
+
+.dateTimeCls {
+    width: 180px;
+    margin: 0 20px 0px 20px;
+}
+
+.dateTimeCls:hover {
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+        position: absolute;
+        top: 20px;
+        max-width: 100%;
+        display: inline-block;
+        clear: both;
+        z-index: 9999;
+        min-width: 100%;
+        height: 100%;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+    button#sidebarCollapse {
+        display: block;
+    }
+    .content-area .col-sm-6.one:after {
+        display: none;
+    }
+}
+
+@media(min-width:900px) {
+    button#sidebarCollapse {
+        display: none;
+    }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 899px) {
+    .content-area .col-sm-6.one:after {
+        display: none;
+    }
+    .content-area .col-sm-6 {
+        max-width: 100%;
+        display: block;
+        border-bottom: 1px solid;
+        padding: 10px 0px 20px 0px;
+    }
+    .content-area .col-sm-2 {
+        width: 17%;
+    }
+    .content-area .col-sm-4 {
+        width: 25%;
+    }
+    .content-area .col-sm-3 {
+        width: 30%;
+    }
+    button.btn.btn-info.arrowbtn {
+        padding-right: 30px;
+    }
+    .content-area .container {
+        border: 0px;
+    }
+    .content-area {
+        margin-top: 20px;
+    }
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

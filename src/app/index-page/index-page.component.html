@@ -1,0 +1,537 @@
+<!-- <form (ngSubmit)="onSubmit(reportForm); reportForm.reset()" #reportForm="ngForm"> -->
+<!-- <form #reportForm="ngForm"> -->
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <!-- <nav id="sidebar">
+        <ul class="list-unstyled components">
+
+
+        </ul>
+    </nav> -->
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <img class="logoImage" src="assets/logo.png" id="home-page-logo" alt="TechMahindra">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;" (click)="logout()">Log out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content-area">
+            <div class="container">
+                <figure class="highcharts-figure" [style.display]="'graphVal'">
+                    <div id="stackBar"></div>
+                    <!-- <p class="highcharts-description">
+                        Chart showing stacked horizontal bars. This type of visualization is
+                        great for comparing data that accumulates up to a sum.
+                    </p> -->
+                </figure>
+
+
+                <form form (ngSubmit)="AddSalesFunc(addSalesTemplate);" #addSalesTemplate="ngForm" class="col-xs-12 col-sm-12  col-md-12 col-lg-12" id="addSales-form-id" *ngIf="addSalesTemplate_tag !== null">
+                    <div class="modal-header">
+                        <h2 class="modal-title pull-left mod-head">
+                            Sales Forecast - FY20-21
+                        </h2>
+                        <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="reload_home()">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
+                    </div>
+                    <div class="modal-body question-modal-body">
+                        <div class="form-group">
+                            <label for="SBU">SBU</label>&nbsp;&nbsp;
+                            <select ngModel class="form-control input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" name="SBU" id="SBU" required>
+                                <option [(value)]="SBUval.name" *ngFor="let SBUval of SBUList">
+                                    {{SBUval.name}}
+                                </option>
+                            </select>
+                            <label for="IBG">IBG</label>&nbsp;&nbsp;
+                            <select ngModel class="form-control input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" name="IBG" id="IBG" required>
+                                <option [(value)]="IBGVal.id" *ngFor="let IBGVal of IBGList">
+                                    {{IBGVal.name}}
+                                </option>
+                            </select>
+                            <label for="IBU">IBU</label>&nbsp;&nbsp;
+                            <select ngModel class="form-control input-sm col-xs-3 col-sm-3 col-md-3 col-lg-3" name="IBU" id="IBU" required>
+                                <option [(value)]="IBUVal.id" *ngFor="let IBUVal of IBUList">
+                                    {{IBUVal.name}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <h3 id="sales-head">Sales Forecast </h3>
+                        <table class="table table-bordered table-condensed" cellspacing="0" id="mytable">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th colspan="2">Q1-Total</th>
+                                    <th colspan="2">May</th>
+                                    <th colspan="2">Jun</th>
+                                    <th colspan="2">Jul</th>
+                                    <th colspan="2">Q2-Total</th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Base</th>
+                                    <th>Best</th>
+                                    <th>Base</th>
+                                    <th>Best</th>
+                                    <th>Base</th>
+                                    <th>Best</th>
+                                    <th>Base</th>
+                                    <th>Best</th>
+                                    <th>Base</th>
+                                    <th>Best</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let accountName of account">
+                                <tr>
+                                    <th class="sign-cls" id={{accountName.accountId}} (click)="togglrMy(accountName.accountId,$event)">-</th>
+                                    <th>{{accountName.name}}</th>
+                                    <td colspan="10"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId" (click)="toggleL2(accountName.accountId)">
+                                    <th class="sign-cls">-</th>
+                                    <th>EN</th>
+                                    <td colspan="10"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId" class="'accountName.accountId'+'className-'">
+                                    <td></td>
+                                    <td>Managed/Large</td>
+                                    <td>{{accountName.en_ml_0}}</td>
+                                    <td>{{accountName.en_ml_1}}</td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ml_2"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ml_3"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ml_4"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ml_5"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ml_6"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ml_7"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ml_8"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ml_9"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId">
+                                    <td></td>
+                                    <td>Managed/Small</td>
+                                    <td>{{accountName.en_ms_0}}</td>
+                                    <td>{{accountName.en_ms_1}}</td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ms_2"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ms_3"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ms_4"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ms_5"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ms_6"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ms_7"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ms_8"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ms_9"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId">
+                                    <td></td>
+                                    <td>Professional/Large</td>
+                                    <td>{{accountName.en_pl_0}}</td>
+                                    <td>{{accountName.en_pl_1}}</td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_pl_2"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_pl_3"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_pl_4"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_pl_5"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_pl_6"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_pl_7"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_pl_8"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_pl_9"></td>
+
+                                </tr>
+                                <tr [ngClass]="accountName.accountId">
+                                    <td></td>
+                                    <td>Professional/Small</td>
+                                    <td>{{accountName.en_ps_0}}</td>
+                                    <td>{{accountName.en_ps_1}}</td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ps_2"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ps_3"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ps_4"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ps_5"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ps_6"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ps_7"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ps_8"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.en_ps_9"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId">
+                                    <th class="sign-cls">-</th>
+                                    <th>NN</th>
+                                    <td colspan="10"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId">
+                                    <td></td>
+                                    <td>Managed/Large</td>
+                                    <td>{{accountName.nn_ml_0}}</td>
+                                    <td>{{accountName.nn_ml_1}}</td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ml_2"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ml_3"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ml_4"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ml_5"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ml_6"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ml_7"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ml_8"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ml_9"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId">
+                                    <td></td>
+                                    <td>Managed/Small</td>
+                                    <td>{{accountName.nn_ms_0}}</td>
+                                    <td>{{accountName.nn_ms_1}}</td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ms_2"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ms_3"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ms_4"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ms_5"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ms_6"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ms_7"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ms_8"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ms_9"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId">
+                                    <td></td>
+                                    <td>Professional/Large</td>
+                                    <td>{{accountName.nn_pl_0}}</td>
+                                    <td>{{accountName.nn_pl_1}}</td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_pl_2"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_pl_3"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_pl_4"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_pl_5"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_pl_6"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_pl_7"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_pl_8"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_pl_9"></td>
+                                </tr>
+                                <tr [ngClass]="accountName.accountId">
+                                    <td></td>
+                                    <td>Professional/Small</td>
+                                    <td>{{accountName.nn_ps_0}}</td>
+                                    <td>{{accountName.nn_ps_1}}</td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ps_2"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ps_3"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ps_4"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ps_5"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ps_6"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ps_7"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ps_8"></td>
+                                    <td><input type="text" size="4" [(value)]="accountName.nn_ps_9"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-primary" type="submit" value="Submit" [disabled]="!addSalesTemplate.form.valid">
+                        <p class="alert alert-danger top-space" *ngIf="error !== null">{{error}}</p>
+                    </div>
+                </form>
+
+
+                <!-- <form form (ngSubmit)="AddSalesFunc(addSalesTemplate);" #addSalesTemplate="ngForm" class="col-xs-12 col-sm-12  col-md-12 col-lg-12" id="addSales-form-id" *ngIf="addSalesTemplate_tag !== null">
+                    <div class="modal-header">
+                        <h2 class="modal-title pull-left mod-head">
+                            Add Sales Forecast
+                        </h2>
+                    </div>
+                    <div class="modal-body question-modal-body">
+                        <div class="form-group row">
+                            <label for="SBU" class="col-xs-2 col-sm-2  col-md-2 col-lg-2">SBU</label>
+                            <select ngModel class="form-control col-xs-4 col-sm-4  col-md-4 col-lg-4" name="SBU" id="SBU" required>
+                                <option [(value)]="SBUval.name" *ngFor="let SBUval of SBUList">
+                                    {{SBUval.name}}
+                                </option>
+                            </select>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="IBG" class="col-xs-2 col-sm-2  col-md-2 col-lg-2">IBG</label>
+                            <select ngModel class="form-control col-xs-4 col-sm-4  col-md-4 col-lg-4" name="IBG" id="IBG" required>
+                                <option [(value)]="IBGVal.id" *ngFor="let IBGVal of IBGList">
+                                    {{IBGVal.name}}
+                                </option>
+                            </select>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="IBU" class="col-xs-2 col-sm-2  col-md-2 col-lg-2">IBU</label>
+                            <select ngModel class="form-control col-xs-4 col-sm-4  col-md-4 col-lg-4" name="IBU" id="IBU" required>
+                                <option [(value)]="IBUVal.id" *ngFor="let IBUVal of IBUList">
+                                    {{IBUVal.name}}
+                                </option>
+                            </select>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Customer_Account" class="col-xs-2 col-sm-2  col-md-2 col-lg-2">Customer
+                                Account</label>
+                            <select ngModel class="form-control col-xs-4 col-sm-4  col-md-4 col-lg-4" name="Customer_Account" id="Customer_Account" required>
+                                <option [(value)]="CustomerVal.id" *ngFor="let CustomerVal of CustomerList">
+                                    {{CustomerVal.name}}
+                                </option>
+                            </select>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Fiscal_Year" class="col-xs-2 col-sm-2  col-md-2 col-lg-2">Fiscal Year</label>
+                            <select ngModel class="form-control col-xs-4 col-sm-4  col-md-4 col-lg-4" name="Fiscal_Year" id="Fiscal_Year" required>
+                                <option [(value)]="FiscalVal.id" *ngFor="let FiscalVal of FiscalList">
+                                    {{FiscalVal.name}}
+                                </option>
+                            </select>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Opportunity_Category" class="col-xs-2 col-sm-2  col-md-2 col-lg-2">Opportunity Category</label>
+                            <select ngModel class="form-control col-xs-4 col-sm-4  col-md-4 col-lg-4" name="Opportunity_Category" id="Opportunity_Category" required>
+                                <option [(value)]="oppList.id" *ngFor="let oppList of OpportunityCategoryList">
+                                    {{oppList.name}}
+                                </option>
+                            </select>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+
+                        <h3 id="sales-head">Sales Forecast </h3>
+                        <table class="table table-bordered table-hover table-responsive col-xs-12 col-sm-12  col-md-12 col-lg-12">
+
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <th colspan="2">May</th>
+                                    <th colspan="2">June</th>
+                                    <th colspan="2">July</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Base Case</td>
+                                    <td>Best Case</td>
+                                    <td>Base Case</td>
+                                    <td>Best Case</td>
+                                    <td>Base Case</td>
+                                    <td>Best Case</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">EN</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">Managed</th>
+                                </tr>
+                                <tr>
+                                    <td>Large</td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_l_1" name="en_mn_l_1" #en_mn_l_1="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_l_2" name="en_mn_l_2" #en_mn_l_2="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_l_3" name="en_mn_l_3" #en_mn_l_3="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_l_4" name="en_mn_l_4" #en_mn_l_4="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_l_5" name="en_mn_l_5" #en_mn_l_5="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_l_6" name="en_mn_l_6" #en_mn_l_6="ngModel" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Small</td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_s_1" name="en_mn_s_1" #en_mn_s_1="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_s_2" name="en_mn_s_2" #en_mn_s_2="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_s_3" name="en_mn_s_3" #en_mn_s_3="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_s_4" name="en_mn_s_4" #en_mn_s_4="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_s_5" name="en_mn_s_5" #en_mn_s_5="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_mn_s_6" name="en_mn_s_6" #en_mn_s_6="ngModel" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">Professional</th>
+                                </tr>
+                                <tr>
+                                    <td>Large</td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_l_1" name="en_pf_l_1" #en_pf_l_1="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_l_2" name="en_pf_l_2" #en_pf_l_2="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_l_3" name="en_pf_l_3" #en_pf_l_3="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_l_4" name="en_pf_l_4" #en_pf_l_4="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_l_5" name="en_pf_l_5" #en_pf_l_5="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_l_6" name="en_pf_l_6" #en_pf_l_6="ngModel" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Small</td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_s_1" name="en_pf_s_1" #en_pf_s_1="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_s_2" name="en_pf_s_2" #en_pf_s_2="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_s_3" name="en_pf_s_3" #en_pf_s_3="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_s_4" name="en_pf_s_4" #en_pf_s_4="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_s_5" name="en_pf_s_5" #en_pf_s_5="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="en_pf_s_6" name="en_pf_s_6" #en_pf_s_6="ngModel" required>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                <tr>
+                                    <th colspan="7">NN</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">Managed</th>
+                                </tr>
+                                <tr>
+                                    <td>Large</td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_l_1" name="nn_mn_l_1" #nn_mn_l_1="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_l_2" name="nn_mn_l_2" #nn_mn_l_2="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_l_3" name="nn_mn_l_3" #nn_mn_l_3="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_l_4" name="nn_mn_l_4" #nn_mn_l_4="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_l_5" name="nn_mn_l_5" #nn_mn_l_5="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_l_6" name="nn_mn_l_6" #nn_mn_l_6="ngModel" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Small</td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_s_1" name="nn_mn_s_1" #nn_mn_s_1="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_s_2" name="nn_mn_s_2" #nn_mn_s_2="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_s_3" name="nn_mn_s_3" #nn_mn_s_3="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_s_4" name="nn_mn_s_4" #nn_mn_s_4="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_s_5" name="nn_mn_s_5" #nn_mn_s_5="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_mn_s_6" name="nn_mn_s_6" #nn_mn_s_6="ngModel" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">Professional</th>
+                                </tr>
+                                <tr>
+                                    <td>Large</td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_l_1" name="nn_pf_l_1" #nn_pf_l_1="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_l_2" name="nn_pf_l_2" #nn_pf_l_2="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_l_3" name="nn_pf_l_3" #nn_pf_l_3="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_l_4" name="nn_pf_l_4" #nn_pf_l_4="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_l_5" name="nn_pf_l_5" #nn_pf_l_5="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_l_6" name="nn_pf_l_6" #nn_pf_l_6="ngModel" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Small</td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_s_1" name="nn_pf_s_1" #nn_pf_s_1="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_s_2" name="nn_pf_s_2" #nn_pf_s_2="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_s_3" name="nn_pf_s_3" #nn_pf_s_3="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_s_4" name="nn_pf_s_4" #nn_pf_s_4="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_s_5" name="nn_pf_s_5" #nn_pf_s_5="ngModel" required>
+                                    </td>
+                                    <td>
+                                        <input ngModel type="text" class="form-control" id="nn_pf_s_6" name="nn_pf_s_6" #nn_pf_s_6="ngModel" required>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-primary" type="submit" value="Submit" [disabled]="!addSalesTemplate.form.valid">
+                        <p class="alert alert-danger top-space" *ngIf="error !== null">{{error}}</p>
+                    </div>
+                </form> -->
+
+            </div>
+        </div>
+    </div>
+</div>

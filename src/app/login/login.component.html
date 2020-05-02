@@ -1,0 +1,23 @@
+<div class="container top-div col-xs-12 col-sm-9  col-md-6 col-lg-6">
+    <img class="logoImage" id="sign_in-page-logo" src="assets/logo.png" alt="TechMahindra">
+    <br>
+    <form form (ngSubmit)="adminLogin(adminLoginForm)" #adminLoginForm="ngForm" class="col-xs-12 col-sm-8  col-md-8 col-lg-8" id="login-form-id">
+        <div class="form-group">
+            <label for="adminId">User Id:</label>
+            <input ngModel type="text" class="form-control" id="adminId" placeholder="Enter User Id" name="adminId" #adminId="ngModel" required>
+            <div class="alert alert-danger  err-msg-cls" *ngIf="adminId.touched && !adminId.valid">
+                Please enter User Id.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pswd">Password:</label>
+            <input ngModel #pswd="ngModel" type="password" class="form-control" id="pswd" placeholder="Enter password" name="pswd" required>
+            <div class="alert alert-danger  err-msg-cls" *ngIf="pswd.touched && !pswd.valid">
+                Please enter password.
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit" [disabled]="!adminLoginForm.form.valid">
+        <a id="forgot_pwd" name="forgot_pwd" routerLink="/forgot-password" routerLinkActive="active" disabled>Forgot password</a>
+        <p class="alert alert-danger top-space" *ngIf="error !== null">{{error}}</p>
+    </form>
+</div>
